@@ -49,7 +49,8 @@ const SignIn = () => {
     onSuccess: (data) => {
       toast.success("Đăng nhập thành công!");
       localStorage.setItem("accessToken", data.accessToken);
-      setAuth(data);
+      sessionStorage.setItem("accessToken", data.accessToken);
+      // setAuth(data);
       navigate("/tiktok-shop-dashboard");
     },
     onError: () => {
