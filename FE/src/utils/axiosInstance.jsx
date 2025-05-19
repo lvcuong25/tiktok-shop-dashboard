@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/api/',
+  baseURL: "http://localhost:3000/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
-
 // Thêm interceptor để tự động gắn token
 instance.interceptors.request.use((config) => {
   if (!config.url.includes('/auth/sign-in')) {

@@ -5,22 +5,11 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userService, setUserService] = useState(null);
 
   useEffect(() => {
     const checkAuth = () => {
       const token = localStorage.getItem("accessToken");
-      const userStr = localStorage.getItem("user");
       setIsLoggedIn(!!token);
-
-      if (userStr) {
-        try {
-          const userData = JSON.parse(userStr);
-          setUserService(userData.service);
-        } catch (error) {
-          console.error('Error parsing user data:', error);
-        }
-      }
     };
     checkAuth();
   }, []);
@@ -35,7 +24,7 @@ const Header = () => {
             {isLoggedIn ? (
               <Logout onLogoutSuccess={() => {
                 setIsLoggedIn(false);
-                setUserService(null);
+             
               }} />
             ) : (
               <Link

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import instance from "../utils/axiosInstance";
+import { setAuth } from "./core/AuthHelper";
 
 const signinSchema = Joi.object({
   email: Joi.string()
@@ -47,9 +48,8 @@ const SignIn = () => {
     },
     onSuccess: (data) => {
       toast.success("Đăng nhập thành công!");
-      console.log(data);
       localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      setAuth(data);
       navigate("/tiktok-shop-dashboard");
     },
     onError: () => {

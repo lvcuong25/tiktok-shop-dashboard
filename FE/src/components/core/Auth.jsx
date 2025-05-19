@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getUserByToken } from "./_request"; // adjust the path according to your project structure
-import { getAuth, removeAuth, setAuth } from "./AuthHelper";
+import { getAuth, removeAuth } from "./AuthHelper";
 
 
 const AuthContext = createContext();
 export const fetchUser = async (setCurrentUser) => {
-  const token = localStorage.getItem("accessToken");
+  const token = getAuth();
   if (!token) {
     removeAuth();
     setCurrentUser(null);
@@ -14,7 +14,6 @@ export const fetchUser = async (setCurrentUser) => {
   try {
     const { data } = await getUserByToken();
     if (data) {
-      setAuth(data);
       setCurrentUser(data);
     } else {
       removeAuth();
@@ -27,7 +26,7 @@ export const fetchUser = async (setCurrentUser) => {
 };
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(getAuth());
+  const [currentUser, setCurrentUser] = useState(null);
   
   useEffect(() => {
     fetchUser(setCurrentUser);
@@ -37,9 +36,6 @@ const AuthProvider = ({ children }) => {
     removeAuth();
     setCurrentUser(null);
   };
-
-  useEffect(() => {
-  }, [currentUser]);
 
   return (
     <AuthContext.Provider

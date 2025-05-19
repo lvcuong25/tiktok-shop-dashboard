@@ -23,7 +23,7 @@ export const getUser = async (req, res, next) => {
             });
         }
 
-        const user = await User.findById(decoded._id).populate('service');
+        const user = await User.findById(decoded._id);
         if (!user) {
             return res.status(403).json({
                 message: "User does not exist",
@@ -34,11 +34,9 @@ export const getUser = async (req, res, next) => {
                 message: "User is not active",
             });
         }
-
-        // Thêm thông tin user vào request
-        req.user = user;
+        req.user = user
         next();
     } catch (error) {
         next(error);
     }
-};
+}   

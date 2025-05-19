@@ -19,8 +19,8 @@ const routerAuth = Router();
 // routerAuth.post("/reset-password", checkRequestBody(resetPasswordSchema), resetPassword);
 routerAuth.post("/sign-up", signUp);
 routerAuth.post("/sign-in", signIn);
-// routerAuth.use(getUser)
-// routerAuth.get("/", getUserByToken);
+routerAuth.use(getUser)
+routerAuth.get("/", getUserByToken);
 // routerAuth.post("/change-password", changePassword);
 
 export default routerAuth;
