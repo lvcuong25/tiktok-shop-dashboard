@@ -90,7 +90,7 @@ const SignUp = () => {
                 <div className="relative flex items-center">
                   <input
                     {...register("password")}
-                    type="Mật khẩu"
+                    type="password"
                     className="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
                     placeholder="Nhập mật khẩu"
                   />
