@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import instance from "../utils/axiosInstance";
+import image from "../image/image.jpg";
 
 const signupSchema = Joi.object({
   email: Joi.string().email({ tlds: { allow: false } }).required().messages({
@@ -66,7 +67,10 @@ const SignUp = () => {
           <div className="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-8">
-                <h3 className="text-slate-900 text-3xl font-semibold">Đăng ký</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-slate-900 text-3xl font-semibold">Đăng ký</h3>
+                  <img src={image} alt="2T DATA" className="h-[80px] w-[120px]" />
+                </div>
                 <p className="text-slate-500 text-sm mt-6 leading-relaxed">
                   Tạo tài khoản để bắt đầu hành trình khám phá của bạn.
                 </p>

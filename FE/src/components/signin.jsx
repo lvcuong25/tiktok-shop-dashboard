@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import instance from "../utils/axiosInstance";
 import { setAuth } from "./core/AuthHelper";
-
+import image from "../image/image.jpg";
 const signinSchema = Joi.object({
   email: Joi.string()
     .email({ tlds: false })
@@ -69,7 +69,10 @@ const SignIn = () => {
           <div className="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="mb-12">
-                <h3 className="text-slate-900 text-3xl font-semibold">Đăng nhập</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-slate-900 text-3xl font-semibold">Đăng nhập</h3>
+                  <img src={image} alt="2T DATA" className="h-[80px] w-[120px]" />
+                </div>
                 <p className="text-slate-500 text-sm mt-6 leading-relaxed">
                   Đăng nhập tài khoản để bắt đầu trải nghiệm.
                 </p>
